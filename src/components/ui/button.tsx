@@ -15,6 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Custom variants for Conexão Jurídica
+        hero: "bg-gradient-accent hover:bg-accent-hover text-accent-foreground shadow-gold transition-all",
+        premium: "bg-gradient-primary hover:bg-primary-hover text-primary-foreground shadow-elegant transition-all",
       },
       size: {
         default: "h-10 px-4 py-2",
