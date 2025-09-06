@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Scale, Phone } from "lucide-react";
+import { Menu, X, Scale, Phone, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin } = useAuth();
 
   const navigation = [
     { name: "Início", href: "/" },
@@ -48,6 +50,18 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className={`text-sm font-medium transition-colors hover:text-accent ${
+                  isActive("/admin") 
+                    ? "text-accent" 
+                    : "text-muted-foreground"
+                }`}
+              >
+                Admin
+              </Link>
+            )}
           </div>
 
           {/* Contact Button */}
@@ -58,9 +72,23 @@ const Navigation = () => {
                 <span>+(244) 922 600 019</span>
               </a>
             </Button>
-            <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
-              Consulta Gratuita
-            </Button>
+            {!user ? (
+              <>
+                <Link to="/login">
+                  <Button variant="outline" size="sm">
+                    <User className="w-4 h-4 mr-2" />
+                    Login
+                  </Button>
+                </Link>
+                <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
+                  Consulta Gratuita
+                </Button>
+              </>
+            ) : (
+              <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
+                Consulta Gratuita
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -94,6 +122,19 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-base font-medium transition-colors hover:text-accent px-2 py-1 ${
+                    isActive("/admin") 
+                      ? "text-accent" 
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  Admin
+                </Link>
+              )}
               <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
                 <Button variant="outline" size="sm" asChild>
                   <a href="tel:+244922600019" className="flex items-center justify-center space-x-2">
@@ -101,9 +142,23 @@ const Navigation = () => {
                     <span>+(244) 922 600 019</span>
                   </a>
                 </Button>
-                <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
-                  Consulta Gratuita
-                </Button>
+                {!user ? (
+                  <>
+                    <Link to="/login" onClick={() => setIsOpen(false)}>
+                      <Button variant="outline" size="sm" className="w-full">
+                        <User className="w-4 h-4 mr-2" />
+                        Login
+                      </Button>
+                    </Link>
+                    <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
+                      Consulta Gratuita
+                    </Button>
+                  </>
+                ) : (
+                  <Button className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
+                    Consulta Gratuita
+                  </Button>
+                )}
               </div>
             </div>
           </div>
