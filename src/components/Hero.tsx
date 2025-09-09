@@ -27,8 +27,9 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl">
-              A Conexão Jurídica é o seu parceiro estratégico para consultoria especializada, 
-              eventos jurídicos e formações que elevam sua prática profissional em Luanda.
+              Somos uma plataforma inovadora que conecta advogados, juristas e estudantes de direito 
+              em Angola, oferecendo consultoria especializada, formações práticas e eventos que fortalecem 
+              nossa comunidade jurídica angolana.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
@@ -46,23 +47,23 @@ const Hero = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
                 <Users className="w-8 h-8 text-accent mx-auto mb-2" />
-                <div className="text-2xl font-bold">500+</div>
-                <div className="text-sm text-primary-foreground/80">Profissionais Conectados</div>
+                <div className="text-2xl font-bold">150+</div>
+                <div className="text-sm text-primary-foreground/80">Profissionais da Rede</div>
               </div>
               <div className="text-center">
                 <Scale className="w-8 h-8 text-accent mx-auto mb-2" />
-                <div className="text-2xl font-bold">100+</div>
-                <div className="text-sm text-primary-foreground/80">Casos Resolvidos</div>
+                <div className="text-2xl font-bold">50+</div>
+                <div className="text-sm text-primary-foreground/80">Consultorias Realizadas</div>
               </div>
               <div className="text-center">
                 <Award className="w-8 h-8 text-accent mx-auto mb-2" />
-                <div className="text-2xl font-bold">15+</div>
-                <div className="text-sm text-primary-foreground/80">Anos de Experiência</div>
+                <div className="text-2xl font-bold">8+</div>
+                <div className="text-sm text-primary-foreground/80">Anos no Mercado</div>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-accent mx-auto mb-2" />
-                <div className="text-2xl font-bold">24/7</div>
-                <div className="text-sm text-primary-foreground/80">Suporte Disponível</div>
+                <div className="text-2xl font-bold">20+</div>
+                <div className="text-sm text-primary-foreground/80">Eventos Organizados</div>
               </div>
             </div>
           </div>

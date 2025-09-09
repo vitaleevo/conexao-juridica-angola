@@ -7,17 +7,17 @@ const About = () => {
     {
       icon: Target,
       title: "Missão",
-      description: "Conectar profissionais do direito em Angola, oferecendo serviços jurídicos especializados e eventos que promovam o desenvolvimento profissional e o networking.",
+      description: "Fortalecer a comunidade jurídica angolana através de conexões profissionais, consultoria especializada no direito angolano e eventos que promovam a excelência e o desenvolvimento contínuo dos profissionais.",
     },
     {
       icon: Eye,
       title: "Visão",
-      description: "Ser a principal plataforma de conexão jurídica em Angola, reconhecida pela excelência em serviços e pela contribuição ao desenvolvimento do setor jurídico nacional.",
+      description: "Ser a referência em Angola para profissionais do direito que buscam crescimento, networking qualificado e soluções jurídicas inovadoras adaptadas à realidade socioeconómica angolana.",
     },
     {
       icon: Heart,
       title: "Valores",
-      description: "Integridade, Excelência, Inovação, Colaboração e Compromisso com o desenvolvimento profissional dos nossos parceiros e clientes.",
+      description: "Comprometemo-nos com a ética, transparência e excelência. Valorizamos a cultura angolana, promovemos a colaboração entre pares e investimos no desenvolvimento sustentável da nossa comunidade jurídica.",
     },
   ];
 
@@ -39,22 +39,24 @@ const About = () => {
 
             <div className="space-y-4 mb-8">
               <p className="text-muted-foreground">
-                A <strong className="text-primary">Conexão Jurídica</strong> é um projeto inovador liderado por 
-                <strong className="text-primary"> Luis Bastos</strong>, focado em revolucionar a forma como 
-                profissionais do direito se conectam e desenvolvem suas carreiras em Angola.
+                Fundada pelo <strong className="text-primary">Dr. Luis Bastos</strong>, a 
+                <strong className="text-primary"> Conexão Jurídica</strong> nasceu da necessidade de criar 
+                uma verdadeira rede de apoio entre profissionais do direito em Angola, onde conhecimento, 
+                experiência e oportunidades são compartilhados de forma colaborativa.
               </p>
               
               <p className="text-muted-foreground">
-                Com sede em <strong className="text-primary">Luanda</strong>, oferecemos uma gama completa de 
-                serviços que incluem consultoria jurídica especializada, assessoria empresarial estratégica, 
-                organização de eventos jurídicos de alta qualidade e programas de formação que preparam 
-                profissionais para os desafios do mercado angolano.
+                Sediados em <strong className="text-primary">Luanda</strong>, atuamos em todo território nacional, 
+                oferecendo consultoria jurídica especializada nas áreas do direito empresarial, civil, laboral 
+                e tributário angolano. Organizamos eventos, workshops e formações que abordam os desafios 
+                reais do exercício da advocacia no contexto socioeconómico angolano.
               </p>
               
               <p className="text-muted-foreground">
-                Nossa abordagem combina <strong className="text-primary">experiência prática</strong> com 
-                <strong className="text-primary"> inovação</strong>, criando oportunidades únicas de networking 
-                e desenvolvimento profissional que elevam o padrão da prática jurídica em Angola.
+                Acreditamos que o <strong className="text-primary">crescimento coletivo</strong> da nossa classe 
+                profissional fortalece o sistema judiciário angolano. Por isso, criamos pontes entre 
+                <strong className="text-primary"> profissionais experientes</strong> e jovens juristas, 
+                promovendo mentorias e oportunidades de desenvolvimento que respeitam nossa cultura e tradições jurídicas.
               </p>
             </div>
 
@@ -104,19 +106,19 @@ const About = () => {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">500+</div>
-              <div className="text-sm text-primary-foreground/80">Profissionais Conectados</div>
+              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">150+</div>
+              <div className="text-sm text-primary-foreground/80">Profissionais na Rede</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">100+</div>
-              <div className="text-sm text-primary-foreground/80">Projetos Realizados</div>
+              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">80+</div>
+              <div className="text-sm text-primary-foreground/80">Consultorias Concluídas</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">50+</div>
-              <div className="text-sm text-primary-foreground/80">Eventos Organizados</div>
+              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">25+</div>
+              <div className="text-sm text-primary-foreground/80">Eventos Realizados</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">15+</div>
+              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">8+</div>
               <div className="text-sm text-primary-foreground/80">Anos de Experiência</div>
             </div>
           </div>

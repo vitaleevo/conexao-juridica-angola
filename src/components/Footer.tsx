@@ -20,8 +20,8 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-primary-foreground/80 mb-6 max-w-md">
-              Conectando profissionais do direito em Angola através de serviços jurídicos especializados, 
-              eventos e consultorias que elevam sua prática profissional.
+              Fortalecemos a comunidade jurídica angolana através de consultoria especializada, 
+              eventos de qualidade e formações que respeitam nossa cultura e sistema legal.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -92,6 +92,7 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-accent flex-shrink-0" />
                 <span className="text-primary-foreground/80">
+                  Rua Kwame Nkrumah, Maianga<br />
                   Luanda, Angola
                 </span>
               </li>

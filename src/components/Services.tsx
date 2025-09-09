@@ -7,32 +7,32 @@ const Services = () => {
     {
       icon: Scale,
       title: "Consultoria Jurídica",
-      description: "Assessoria especializada para empresas e instituições com foco em soluções estratégicas e conformidade legal.",
-      features: ["Direito Empresarial", "Contratos", "Compliance", "Consultoria Tributária"],
+      description: "Assessoria especializada adaptada à legislação angolana, com foco em soluções práticas para empresas nacionais e internacionais.",
+      features: ["Direito Comercial Angolano", "Contratos e Parcerias", "Licenciamento Empresarial", "Direito Fiscal e Tributário"],
     },
     {
       icon: Users,
       title: "Assessoria Empresarial",
-      description: "Suporte jurídico estratégico para o crescimento do seu negócio em Angola.",
-      features: ["Constituição de Empresas", "Licenciamento", "Direito Laboral", "Mediação"],
+      description: "Acompanhamento jurídico completo para empreendedores e empresários que querem crescer no mercado angolano.",
+      features: ["Constituição no RUPE", "Licenças e Alvarás", "Direito do Trabalho", "Resolução de Conflitos"],
     },
     {
       icon: Calendar,
       title: "Eventos Jurídicos",
-      description: "Organização de fóruns, palestras e conferências para networking profissional.",
-      features: ["Conferências", "Workshops", "Networking", "Palestras Especializadas"],
+      description: "Encontros profissionais que promovem networking e atualização sobre as mudanças no direito angolano.",
+      features: ["Conferências Jurídicas", "Workshops Práticos", "Mesa Redonda", "Debates sobre Legislação"],
     },
     {
       icon: BookOpen,
-      title: "Imersões Práticas",
-      description: "Experiências de aprendizado prático para profissionais e estudantes de direito.",
-      features: ["Casos Reais", "Mentoria", "Prática Jurídica", "Desenvolvimento Profissional"],
+      title: "Programa de Mentoria",
+      description: "Acompanhamento personalizado para jovens advogados e estudantes de direito em Angola.",
+      features: ["Casos Práticos", "Orientação Profissional", "Simulação de Tribunais", "Networking Orientado"],
     },
     {
       icon: Award,
       title: "Formações Especializadas",
-      description: "Capacitações para profissionais que desejam aprimorar seus conhecimentos jurídicos.",
-      features: ["Cursos Online", "Certificações", "Atualizações Legais", "Especialização"],
+      description: "Cursos e capacitações focados nas particularidades do sistema jurídico e empresarial angolano.",
+      features: ["Direito Angolano Atual", "Práticas Forenses", "Novos Diplomas Legais", "Certificação Profissional"],
     },
   ];
 
