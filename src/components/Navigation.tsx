@@ -26,9 +26,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <Scale className="w-6 h-6 text-primary-foreground" />
-            </div>
+            <img 
+              src="/lovable-uploads/8bdeb1e2-de16-444e-87d2-0940a4d7106d.png" 
+              alt="LB Conexão Jurídica" 
+              className="w-12 h-12 rounded-full"
+            />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-primary">CONEXÃO</span>
               <span className="text-sm text-muted-foreground -mt-1">Jurídica</span>

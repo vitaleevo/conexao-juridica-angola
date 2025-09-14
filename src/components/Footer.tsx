@@ -11,9 +11,11 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center">
-                <Scale className="w-6 h-6 text-accent-foreground" />
-              </div>
+              <img 
+                src="/lovable-uploads/8bdeb1e2-de16-444e-87d2-0940a4d7106d.png" 
+                alt="LB Conexão Jurídica" 
+                className="w-12 h-12 rounded-full"
+              />
               <div className="flex flex-col">
                 <span className="font-bold text-xl text-accent">CONEXÃO</span>
                 <span className="text-sm text-primary-foreground/80 -mt-1">Jurídica</span>

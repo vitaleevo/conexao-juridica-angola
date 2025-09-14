@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, FileText, Calendar } from 'lucide-react';
+import { LogOut, FileText, Calendar, Users, BarChart3 } from 'lucide-react';
 import AdminPosts from '@/components/admin/AdminPosts';
 import AdminEvents from '@/components/admin/AdminEvents';
+import AdminUsers from '@/components/admin/AdminUsers';
+import AdminDashboard from '@/components/admin/AdminDashboard';
 
 export default function Admin() {
   const { user, isAdmin, signOut, loading } = useAuth();
@@ -54,8 +56,12 @@ export default function Admin() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
+            <TabsTrigger value="dashboard" className="flex items-center">
+              <BarChart3 className="w-4 h-4 mr-2" />
+              Dashboard
+            </TabsTrigger>
             <TabsTrigger value="posts" className="flex items-center">
               <FileText className="w-4 h-4 mr-2" />
               Notícias
@@ -64,7 +70,15 @@ export default function Admin() {
               <Calendar className="w-4 h-4 mr-2" />
               Eventos
             </TabsTrigger>
+            <TabsTrigger value="users" className="flex items-center">
+              <Users className="w-4 h-4 mr-2" />
+              Usuários
+            </TabsTrigger>
           </TabsList>
+          
+          <TabsContent value="dashboard">
+            <AdminDashboard />
+          </TabsContent>
           
           <TabsContent value="posts">
             <Card>
@@ -90,6 +104,20 @@ export default function Admin() {
               </CardHeader>
               <CardContent>
                 <AdminEvents />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="users">
+            <Card>
+              <CardHeader>
+                <CardTitle>Gerenciar Usuários</CardTitle>
+                <CardDescription>
+                  Gerencie os usuários e suas permissões
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AdminUsers />
               </CardContent>
             </Card>
           </TabsContent>

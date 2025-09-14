@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash2 } from 'lucide-react';
+import ImageUpload from './ImageUpload';
 import {
   Dialog,
   DialogContent,
@@ -24,6 +25,9 @@ interface Post {
   slug: string;
   published: boolean;
   created_at: string;
+  image_url: string | null;
+  category: string | null;
+  tags: string | null;
 }
 
 export default function AdminPosts() {
@@ -35,6 +39,9 @@ export default function AdminPosts() {
     title: '',
     content: '',
     excerpt: '',
+    image_url: '',
+    category: '',
+    tags: '',
     published: false
   });
   const { toast } = useToast();
@@ -114,7 +121,7 @@ export default function AdminPosts() {
 
       setDialogOpen(false);
       setEditingPost(null);
-      setFormData({ title: '', content: '', excerpt: '', published: false });
+      setFormData({ title: '', content: '', excerpt: '', image_url: '', category: '', tags: '', published: false });
       fetchPosts();
     } catch (error: any) {
       toast({
@@ -131,6 +138,9 @@ export default function AdminPosts() {
       title: post.title,
       content: post.content,
       excerpt: post.excerpt,
+      image_url: post.image_url || '',
+      category: post.category || '',
+      tags: post.tags || '',
       published: post.published
     });
     setDialogOpen(true);
@@ -172,13 +182,13 @@ export default function AdminPosts() {
         <DialogTrigger asChild>
           <Button onClick={() => {
             setEditingPost(null);
-            setFormData({ title: '', content: '', excerpt: '', published: false });
+            setFormData({ title: '', content: '', excerpt: '', image_url: '', category: '', tags: '', published: false });
           }}>
             <Plus className="w-4 h-4 mr-2" />
             Nova Notícia
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingPost ? 'Editar Notícia' : 'Nova Notícia'}
@@ -196,6 +206,33 @@ export default function AdminPosts() {
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 required
               />
+            </div>
+            
+            <ImageUpload
+              onImageUploaded={(imageUrl) => setFormData({ ...formData, image_url: imageUrl })}
+              currentImage={formData.image_url}
+              onRemoveImage={() => setFormData({ ...formData, image_url: '' })}
+            />
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="category">Categoria</Label>
+                <Input
+                  id="category"
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  placeholder="Ex: Direito Civil"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="tags">Tags</Label>
+                <Input
+                  id="tags"
+                  value={formData.tags}
+                  onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+                  placeholder="Separadas por vírgula"
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="excerpt">Resumo</Label>
@@ -246,10 +283,23 @@ export default function AdminPosts() {
             <div key={post.id} className="border rounded-lg p-4">
               <div className="flex justify-between items-start">
                 <div className="space-y-2 flex-1">
-                  <h3 className="font-semibold">{post.title}</h3>
-                  <p className="text-sm text-muted-foreground">{post.excerpt}</p>
+                  <div className="flex items-center space-x-4">
+                    {post.image_url && (
+                      <img 
+                        src={post.image_url} 
+                        alt={post.title}
+                        className="w-16 h-16 object-cover rounded-lg"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <h3 className="font-semibold">{post.title}</h3>
+                      <p className="text-sm text-muted-foreground">{post.excerpt}</p>
+                    </div>
+                  </div>
                   <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                     <span>{new Date(post.created_at).toLocaleDateString('pt-BR')}</span>
+                    {post.category && <span>📂 {post.category}</span>}
+                    {post.tags && <span>🏷️ {post.tags}</span>}
                     <span className={`px-2 py-1 rounded-full ${
                       post.published 
                         ? 'bg-green-100 text-green-800' 

@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash2, Calendar } from 'lucide-react';
+import ImageUpload from './ImageUpload';
 import {
   Dialog,
   DialogContent,
@@ -24,6 +25,10 @@ interface Event {
   location: string;
   published: boolean;
   created_at: string;
+  image_url: string | null;
+  price: string | null;
+  max_attendees: number | null;
+  current_attendees: number | null;
 }
 
 export default function AdminEvents() {
@@ -36,6 +41,9 @@ export default function AdminEvents() {
     description: '',
     event_date: '',
     location: '',
+    image_url: '',
+    price: '',
+    max_attendees: '',
     published: false
   });
   const { toast } = useToast();
@@ -68,10 +76,15 @@ export default function AdminEvents() {
     e.preventDefault();
     
     try {
+      const eventData = {
+        ...formData,
+        max_attendees: formData.max_attendees ? parseInt(formData.max_attendees) : null
+      };
+      
       if (editingEvent) {
         const { error } = await supabase
           .from('events')
-          .update(formData)
+          .update(eventData)
           .eq('id', editingEvent.id);
 
         if (error) throw error;
@@ -84,7 +97,7 @@ export default function AdminEvents() {
         const { error } = await supabase
           .from('events')
           .insert([{
-            ...formData,
+            ...eventData,
             author_id: (await supabase.auth.getUser()).data.user?.id
           }]);
 
@@ -98,7 +111,7 @@ export default function AdminEvents() {
 
       setDialogOpen(false);
       setEditingEvent(null);
-      setFormData({ title: '', description: '', event_date: '', location: '', published: false });
+      setFormData({ title: '', description: '', event_date: '', location: '', image_url: '', price: '', max_attendees: '', published: false });
       fetchEvents();
     } catch (error: any) {
       toast({
@@ -115,7 +128,10 @@ export default function AdminEvents() {
       title: event.title,
       description: event.description,
       event_date: event.event_date.split('T')[0], // Format for date input
-      location: event.location,
+      location: event.location || '',
+      image_url: event.image_url || '',
+      price: event.price || '',
+      max_attendees: event.max_attendees?.toString() || '',
       published: event.published
     });
     setDialogOpen(true);
@@ -157,13 +173,13 @@ export default function AdminEvents() {
         <DialogTrigger asChild>
           <Button onClick={() => {
             setEditingEvent(null);
-            setFormData({ title: '', description: '', event_date: '', location: '', published: false });
+            setFormData({ title: '', description: '', event_date: '', location: '', image_url: '', price: '', max_attendees: '', published: false });
           }}>
             <Plus className="w-4 h-4 mr-2" />
             Novo Evento
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingEvent ? 'Editar Evento' : 'Novo Evento'}
@@ -182,6 +198,13 @@ export default function AdminEvents() {
                 required
               />
             </div>
+            
+            <ImageUpload
+              onImageUploaded={(imageUrl) => setFormData({ ...formData, image_url: imageUrl })}
+              currentImage={formData.image_url}
+              onRemoveImage={() => setFormData({ ...formData, image_url: '' })}
+            />
+            
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="event_date">Data do Evento</Label>
@@ -200,6 +223,28 @@ export default function AdminEvents() {
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   placeholder="Ex: Luanda, Angola"
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="price">Preço</Label>
+                <Input
+                  id="price"
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                  placeholder="Ex: Gratuito, 5.000 Kz"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="max_attendees">Máximo de Participantes</Label>
+                <Input
+                  id="max_attendees"
+                  type="number"
+                  value={formData.max_attendees}
+                  onChange={(e) => setFormData({ ...formData, max_attendees: e.target.value })}
+                  placeholder="Ex: 100"
                 />
               </div>
             </div>
@@ -243,13 +288,26 @@ export default function AdminEvents() {
             <div key={event.id} className="border rounded-lg p-4">
               <div className="flex justify-between items-start">
                 <div className="space-y-2 flex-1">
-                  <h3 className="font-semibold">{event.title}</h3>
-                  <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {new Date(event.event_date).toLocaleDateString('pt-BR')}
+                  <div className="flex items-center space-x-4">
+                    {event.image_url && (
+                      <img 
+                        src={event.image_url} 
+                        alt={event.title}
+                        className="w-16 h-16 object-cover rounded-lg"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <h3 className="font-semibold">{event.title}</h3>
+                      <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                        <div className="flex items-center">
+                          <Calendar className="w-4 h-4 mr-1" />
+                          {new Date(event.event_date).toLocaleDateString('pt-BR')}
+                        </div>
+                        {event.location && <span>📍 {event.location}</span>}
+                        {event.price && <span>💰 {event.price}</span>}
+                        {event.max_attendees && <span>👥 {event.current_attendees || 0}/{event.max_attendees}</span>}
+                      </div>
                     </div>
-                    {event.location && <span>📍 {event.location}</span>}
                   </div>
                   <p className="text-sm text-muted-foreground">
                     {event.description.substring(0, 100)}...
