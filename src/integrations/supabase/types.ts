@@ -18,10 +18,14 @@ export type Database = {
         Row: {
           author_id: string
           created_at: string
+          current_attendees: number | null
           description: string
           event_date: string
           id: string
+          image_url: string | null
           location: string | null
+          max_attendees: number | null
+          price: string | null
           published: boolean | null
           title: string
           updated_at: string
@@ -29,10 +33,14 @@ export type Database = {
         Insert: {
           author_id: string
           created_at?: string
+          current_attendees?: number | null
           description: string
           event_date: string
           id?: string
+          image_url?: string | null
           location?: string | null
+          max_attendees?: number | null
+          price?: string | null
           published?: boolean | null
           title: string
           updated_at?: string
@@ -40,10 +48,14 @@ export type Database = {
         Update: {
           author_id?: string
           created_at?: string
+          current_attendees?: number | null
           description?: string
           event_date?: string
           id?: string
+          image_url?: string | null
           location?: string | null
+          max_attendees?: number | null
+          price?: string | null
           published?: boolean | null
           title?: string
           updated_at?: string
@@ -53,34 +65,43 @@ export type Database = {
       posts: {
         Row: {
           author_id: string
+          category: string | null
           content: string
           created_at: string
           excerpt: string | null
           id: string
+          image_url: string | null
           published: boolean | null
           slug: string
+          tags: string | null
           title: string
           updated_at: string
         }
         Insert: {
           author_id: string
+          category?: string | null
           content: string
           created_at?: string
           excerpt?: string | null
           id?: string
+          image_url?: string | null
           published?: boolean | null
           slug: string
+          tags?: string | null
           title: string
           updated_at?: string
         }
         Update: {
           author_id?: string
+          category?: string | null
           content?: string
           created_at?: string
           excerpt?: string | null
           id?: string
+          image_url?: string | null
           published?: boolean | null
           slug?: string
+          tags?: string | null
           title?: string
           updated_at?: string
         }
@@ -89,6 +110,7 @@ export type Database = {
       profiles: {
         Row: {
           created_at: string
+          email: string | null
           full_name: string | null
           id: string
           role: string | null
@@ -97,6 +119,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id?: string
           role?: string | null
@@ -105,6 +128,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id?: string
           role?: string | null
